@@ -95,7 +95,7 @@ rm README.md
 rm _config.yml
 cd /opt/serveriso
 mv /opt/Auto-Install/ks-example.cfg /opt/serveriso
-mv /opt/Auto-Install/myapps /opt/serveriso
+#####mv /opt/Auto-Install/myapps /opt/serveriso
 
 echo "Setting up KickStart Config File"
 
