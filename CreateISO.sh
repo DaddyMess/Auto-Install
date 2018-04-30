@@ -88,7 +88,7 @@ sed -i "s#initrd.gz#initrd.gz ks=cdrom:/ks.cfg#" /opt/serveriso/isolinux/txt.cfg
 sed -i "s#timeout 0#timeout 10#" /opt/serveriso/isolinux/isolinux.cfg
 
 
-cd /opt && git clone https://github.com/DaddyMess/Auto-Install
+cd /opt && git clone https://github.com/DaddyMess/Auto-Install.git
 cd /opt/Auto-Install
 
 rm README.md
