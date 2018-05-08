@@ -46,24 +46,24 @@ clear
 
 echo "Fully Automated Script to Download Your Ubuntu ISO, "
 echo "Unpack it, edit the MyApps Scripts and then ReImage the ISO back together for you"
-echo " "
-echo "Please only answer questions that are y & n with just y & n "
-echo " "
-echo "What version of Ubuntu?"
-echo "desktop or server?"
-read UbuntuDistro
+#echo " "
+#echo "Please only answer questions that are y & n with just y & n "
+#echo " "
+#echo "What version of Ubuntu?"
+#echo "desktop or server?"
+#read UbuntuDistro
 
-echo "What Version of Ubuntu?"
-echo "16.04.3 / 17.04 / Custom Iso?"
-read UbuntuDistroVer
+#echo "What Version of Ubuntu?"
+#echo "16.04.3 / 17.04 / Custom Iso?"
+#read UbuntuDistroVer
 
-echo "What bit version of OS?"
-echo "i386(32 bit) or amd64 (64 bit)"
-read UbuntuBit
+#echo "What bit version of OS?"
+#echo "i386(32 bit) or amd64 (64 bit)"
+#read UbuntuBit
 
 echo "Downloading Distro"
 chmod -R 0777 /opt
-wget http://releases.ubuntu.com/$UbuntuDistroVer/ubuntu-$UbuntuDistroVer-$UbuntuDistro-$UbuntuBit.iso -P /opt
+wget http://releases.ubuntu.com/16.04.4/ubuntu-16.04.4-server-amd64.iso -P /opt
 
 echo "System Language for the install?"
 echo " 'locale' running this Command shows your Current System Setting Format"
@@ -73,7 +73,7 @@ read SystemLanguage
 echo "Setting up ISO Folder"
 mkdir -p /mnt/iso
 cd /opt
-sudo mount -o loop /opt/ubuntu-$UbuntuDistroVer-$UbuntuDistro-$UbuntuBit.iso /mnt/iso
+sudo mount -o loop /opt/ubuntu-16.04.4-server-amd64.iso /mnt/iso
 mkdir -p /opt/serveriso
 echo "Copying over ISO files"
 cp -rT /mnt/iso /opt/serveriso
@@ -106,50 +106,50 @@ echo "Setting up Installer Language"
 sed -i "s#en_US#$SystemLanguage#" /opt/serveriso/ks.cfg
 
 #dpkg-reconfigure keyboard-configuration
-echo "System Keyboard Setup ?"
-read SystemKeyboard
-sed -i "s#keyboard us#keyboard $SystemKeyboard#" /opt/serveriso/ks.cfg
+#echo "System Keyboard Setup ?"
+#read SystemKeyboard
+#sed -i "s#keyboard us#keyboard $SystemKeyboard#" /opt/serveriso/ks.cfg
 
-echo "TimeZone ?"
-echo "if dont know the format for your timezone check out:"
-echo "https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
-read TimeZone
-sed -i "s#America/New_York#$TimeZone#" /opt/serveriso/ks.cfg
+#echo "TimeZone ?"
+#echo "if dont know the format for your timezone check out:"
+#echo "https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+#read TimeZone
+#sed -i "s#America/New_York#$TimeZone#" /opt/serveriso/ks.cfg
 
-echo "Admin Account UserName ?"
-read AdminUsername
-sed -i "s#xxxusernamexxx#$AdminUsername#g" /opt/serveriso/ks.cfg
+#echo "Admin Account UserName ?"
+#read AdminUsername
+#sed -i "s#xxxusernamexxx#$AdminUsername#g" /opt/serveriso/ks.cfg
 
-echo "Admin Account Password ?"
-read AdminPassword
-sed -i "s#xxxpasswordxxx#$AdminPassword#" /opt/serveriso/ks.cfg
-RandomSalt=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8})
-AdminPasswordcrypt=$(openssl passwd -1 -salt $RandomSalt $AdminPassword)
+#echo "Admin Account Password ?"
+#read AdminPassword
+#sed -i "s#xxxpasswordxxx#$AdminPassword#" /opt/serveriso/ks.cfg
+#RandomSalt=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8})
+#AdminPasswordcrypt=$(openssl passwd -1 -salt $RandomSalt $AdminPassword)
 
-echo "Is the password already Ubuntu encrypted?"
-read AdminPasswd1
-case $AdminPasswd1 in
-  	n)
-  	echo "Encrypting Paswword"
-  	sed -i "s#$AdminPassword#$AdminPasswordcrypt#g" /opt/serveriso/ks.cfg
-  ;;
-  	*)
-  	;;
-esac
+#echo "Is the password already Ubuntu encrypted?"
+#read AdminPasswd1
+#case $AdminPasswd1 in
+#  	n)
+#  	echo "Encrypting Paswword"
+#  	sed -i "s#$AdminPassword#$AdminPasswordcrypt#g" /opt/serveriso/ks.cfg
+#  ;;
+#  	*)
+#  	;;
+#esac
 
-echo "Swap Partition Size ?"
-echo "Partition Setup Does it under MB NOT AS GB"
-read SwapPartition
-sed -i "s#size 5000#size $SwapPartition#" /opt/serveriso/ks.cfg
+#echo "Swap Partition Size ?"
+#echo "Partition Setup Does it under MB NOT AS GB"
+#read SwapPartition
+#sed -i "s#size 5000#size $SwapPartition#" /opt/serveriso/ks.cfg
 
 
 #https://www.cyberciti.biz/tips/linux-unix-pause-command.html
-echo "Pausing in Case for extra edits of myapps"
-read -p "Press [Enter] key to Continue"
+#echo "Pausing in Case for extra edits of myapps"
+#read -p "Press [Enter] key to Continue"
 
-echo "What Would You like the Disc Labeled As?"
-read UbuntuLabel
-sudo mkisofs -D -r -V "$UbuntuLabel" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/$UbuntuLabel.iso /opt/serveriso
+#echo "What Would You like the Disc Labeled As?"
+#read UbuntuLabel
+sudo mkisofs -D -r -V "bubu_test" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o /opt/bubu_test.iso /opt/serveriso
 sudo chmod -R 777 /opt
 
 echo "Done Creating Custom Ubuntu Server ISO!!!  Enjoy!!!"
