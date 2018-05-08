@@ -81,7 +81,7 @@ chmod -R 777 /opt/serveriso/
 cd /opt/serveriso
 
 #(to set default/only Language of installer)
-echo $SystemLanguage >isolinux/langlist 
+echo en_US >isolinux/langlist 
 #edit /opt/serveriso/isolinux/txt.cfg  At the end of the append line add ks=cdrom:/ks.cfg. You can remove quiet — and vga=788
 sed -i "s#initrd.gz#initrd.gz ks=cdrom:/ks.cfg#" /opt/serveriso/isolinux/txt.cfg
 #edit isolinux.cfg for the timeout option to allow a count down to auto start the installer for about 2 seconds
