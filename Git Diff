@@ -1,0 +1,42 @@
+diff --git a/ks-example.cfg b/ks-example.cfg
+index 52d1f17..90f2f04 100644
+--- a/ks-example.cfg
++++ b/ks-example.cfg
+@@ -48,6 +48,37 @@ openssh-server
+ python-glade2
+ libauthen-sasl-perl
+ git
++nano
++vim 
++sssd
++sssd-tools
++libpam-ldap
++libnss-ldap
++nscd
++curl
++tar
++htop
++whois
++tcpdump
++dnsutils
++sysstat
++ipmitool
++software-properties-common
++build-essential
++locales
++git
++memcached
++redis-server
++libsasl2-dev
++libpq-dev
++tzdata
++postgresql-client-9.6
++acl
++ruby2.3
++ruby2.3-dev
++haproxy
++nginx
++
+ 
+ #The Commands below this must be added to the ks.cfg to transfer Program install scripts
+ %post
