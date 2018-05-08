@@ -102,8 +102,8 @@ echo "Setting up KickStart Config File"
 echo "Renaming Kickstart Config File"
 mv ks-example.cfg ks.cfg
 
-echo "Setting up Installer Language"
-sed -i "s#en_US#$SystemLanguage#" /opt/serveriso/ks.cfg
+#echo "Setting up Installer Language"
+#sed -i "s#en_US#$SystemLanguage#" /opt/serveriso/ks.cfg
 
 #dpkg-reconfigure keyboard-configuration
 #echo "System Keyboard Setup ?"
